@@ -1,0 +1,335 @@
+swagger: '2.0'
+info:
+  description: DataStore Tasks
+  version: '1.0'
+  title: Backend API For DataStores
+  termsOfService: 'http://...'
+  contact:
+    email: noreply@mycompany.com
+  license:
+    name: ...
+    url: ...
+basePath: /backend
+tags:
+  - name: DataStores
+    description: Related to native data warehousing data stores
+schemes:
+  - http
+paths:
+
+  '/taskType/ndso/dataStoreName/inputHelp':
+    x-swagger-router-controller: TaskChain
+    parameters:
+      - name: paramName
+        description: Name of parameter for value help
+        type: string
+        in: query
+        required: false
+    get:
+      summary: The list of the datastore names
+      operationId: getDataStores4VH
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                value:
+                  type: string
+                displayText:
+                  type: string
+        '500':
+          description: Error
+          schema:
+            type: object
+
+  '/taskType/flowGraph/flowGraphName/inputHelp':
+    x-swagger-router-controller: TaskChain
+    parameters:
+      - name: paramName
+        description: Name of parameter for value help
+        type: string
+        in: query
+        required: false
+    get:
+      summary: The list of the flowgraph names
+      operationId: getFlowGraphVH
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                value:
+                  type: string
+                displayText:
+                  type: string
+        '500':
+          description: Error
+          schema:
+            type: object
+
+  '/taskType/nDso/fileName/inputHelp':
+    x-swagger-router-controller: TaskChain
+    parameters:
+      - name: paramName
+        description: Name of parameter for value help
+        type: string
+        in: query
+        required: false
+    get:
+      summary: The list of filenames
+      operationId: getFiles
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                value:
+                  type: string
+                displayText:
+                  type: string
+        '500':
+          description: Error
+          schema:
+            type: object
+
+  '/taskType/ndso/v1':
+    x-swagger-router-controller: TaskChain
+    get:
+      summary: get the task types
+      operationId: getTaskTypesNdso
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+        '500':
+          description: Error
+          schema:
+            type: object
+  '/taskType/flowGraph/v1':
+    x-swagger-router-controller: TaskChain
+    get:
+      summary: get the task types
+      operationId: getTaskTypesFlowGraph
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+        '500':
+          description: Error
+          schema:
+            type: object
+
+  '/taskType/ndso/v1/activate':
+    x-swagger-router-controller: TaskChain
+    parameters:
+      - name: body
+        description: the parameters of the activate task
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            callbackUri:
+              type: string
+            parameterValues:
+              type: object
+              properties:
+                  dataStoreName:
+                    type: string
+              required:
+                - dataStoreName
+    post:
+      tags:
+        - TaskType
+      summary: activate request
+      operationId: activateRequests
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+        '500':
+          description: Error
+          schema:
+            type: object
+
+  '/taskType/flowGraph/v1/execute':
+    x-swagger-router-controller: TaskChain
+    parameters:
+      - name: body
+        description: the parameters of the executeFlowGraph task
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            callbackUri:
+              type: string
+            parameterValues:
+              type: object
+              properties:
+                  flowGraphName:
+                    type: string
+              required:
+                - flowGraphName
+    post:
+      tags:
+        - TaskType
+      summary: execute flowgraph
+      operationId: executeFlowGraph
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+        '500':
+          description: Error
+          schema:
+            type: object
+
+  '/taskType/ndso/v1/loadFile':
+    x-swagger-router-controller: TaskChain
+    parameters:
+      - name: body
+        description: the parameters of the loadFile task
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            callbackUri:
+              type: string
+            parameterValues:
+              type: object
+              properties:
+                  dataStoreName:
+                    type: string
+                  inboundTable:
+                    type: string
+                  fileName:
+                    type: string
+                  withHeaderLine:
+                    type: boolean
+              required:
+                - dataStoreName
+                - inboundTable
+                - fileName
+    post:
+      tags:
+        - TaskType
+      summary: load csv data via file
+      operationId: loadFile
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+        '500':
+          description: Error
+          schema:
+            type: object
+
+  '/taskType/ndso/v1/loadHTTP':
+    x-swagger-router-controller: TaskChain
+    parameters:
+      - name: body
+        description: the parameters of the loadHTTP task
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            callbackUri:
+              type: string
+            parameterValues:
+              type: object
+              properties:
+                  dataStoreName:
+                    type: string
+                  inboundTable:
+                    type: string
+                  url:
+                    type: string
+                  proxy:
+                    type: string
+                  timeout:
+                    type: integer
+                  withHeaderLine:
+                    type: boolean
+              required:
+                - dataStoreName
+                - inboundTable
+                - url
+    post:
+      tags:
+        - TaskType
+      summary: load csv data via a http
+      operationId: loadHTTP
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+        '500':
+          description: Error
+          schema:
+            type: object
+
+  '/taskType/ndso/v1/loadSQL':
+    x-swagger-router-controller: TaskChain
+    parameters:
+      - name: body
+        description: the parameters of the loadSQL task
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            callbackUri:
+              type: string
+            parameterValues:
+              type: object
+              properties:
+                  dataStoreName:
+                    type: string
+                  inboundTable:
+                    type: string
+                  sql:
+                    type: string
+              required:
+                - dataStoreName
+                - inboundTable
+                - sql
+    post:
+      tags:
+        - TaskType
+      summary: load data via sql
+      operationId: loadSQL
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+        '500':
+          description: Error
+          schema:
+            type: object
+
+externalDocs:
+  description: Find out more about Data Stores
+  url: 'https://www.youtube.com/watch?v=FRMssPFER_4'

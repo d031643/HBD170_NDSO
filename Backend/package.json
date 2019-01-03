@@ -1,0 +1,27 @@
+{
+	"name": "backendDataStore",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Data Store Backend",
+	"keywords": [],
+	"author": "",
+	"license": "",
+	"main": "app.js",
+	"dependencies": {
+		"async": "2.1.4",
+		"body-parser": "1.17.1",
+		"death": "1.1.0",
+		"express": "4.15.2",
+		"lodash": "4.17.4",
+		"passport": "0.3.2",
+		"request": "2.79.0",
+		"util": "0.10.3",
+
+		"@sap/xssec": "^1.0.0",
+		"@sap/xsenv": "^1.2.6",
+		"@sap/hdbext": "^4.3.0"
+	},
+	"scripts": {
+		"start": "node app.js"
+	}
+}

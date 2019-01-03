@@ -1,0 +1,80 @@
+_schema-version: '2.0'
+ID: DWF20
+description: DWF20
+version: 0.0.1
+
+modules:
+ - name:  DWF20-TaskChains
+   type: dwf
+#   parameters:
+#      app-name: DWF20-TaskChains
+   path: TaskChains
+   requires:
+#      - name: DWF20-uaa
+      - name: DWF20-dws
+
+ - name: DWF20-Backend
+   type: nodejs
+#   parameters:
+#      app-name: DWF20-Backend
+   path: Backend
+   requires:
+#      - name: DWF20-uaa
+      - name: DWF20-container
+      - name: DWF20-dws
+   properties:
+     API_END_POINT: "${xs-api-url}"
+#     SAP_JWT_TRUST_ACL: "[{\"clientid\":\"*\",\"identityzone\":\"*\"}]"
+   provides:
+    - name:  DWF20-Backend
+      properties:
+       service_url: ${default-url}
+
+ - name: DWF20-Persistence
+   type: hdb
+#   parameters:
+#      app-name: DWF20-Persistence
+   path: Persistence
+   requires:
+    - name: DWF20-container
+
+resources:
+# - name: DWF20-uaa
+#   type: com.sap.xs.uaa
+#   parameters:
+#     service-name: DWF20-uaa
+#     service-plan: space
+#     config:
+#         xsappname: DWF20
+#         scopes:
+#          - name: $XSAPPNAME.TOE
+#            description: access for TOE
+#            grant-as-authority-to-apps:
+#             - dwf-toe
+#             - dwf-runtime
+#            granted-apps:
+#             - dwf-toe
+#             - dwf-runtime
+#         authorities:
+#          - $ACCEPT_GRANTED_AUTHORITIES
+#         role-templates:
+#           - name: User
+#             description: Access API
+#             scope-references:
+#              - $XSAPPNAME.TOE
+#              - cloud_controller.read
+
+ - name: DWF20-dws
+   properties:
+      dwf-edw-client-name: ${service-name}
+#      dwf-edw-client-name: DWF20-dws
+#   parameters:
+#      service-name: DWF20-dws
+   type: com.sap.xs.dwf-edw-client
+ - name: DWF20-container
+   properties:
+      hdi-container-name: ${service-name}
+#      hdi-container-name: DWF20-container
+#   parameters:
+#      service-name: DWF20-container
+   type: com.sap.xs.hdi-container

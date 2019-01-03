@@ -1,0 +1,5 @@
+RecordMode;SalesOrderID;OrderDate;CalYear;CustomerNo;CustomerName;ProductID;ProductName;OrderQuantity;Sales
+N;1;13.10.2010;2010;1000;Muhammed MacIntyre;100000;Eldon Base for stackable storage shelf, platinum;6;261.54
+N;2;01.10.2012;2012;2000;Barry French;200000;Cardinal Slant-D® Ring Binder, Heavy Gauge Vinyl;27;244.57
+N;3;10.07.2011;2011;3000;Clay Rozendal;300000;R380;30;4965.76
+N;4;28.08.2010;2010;4000;Carlos Soltero;400000;Holmes HEPA Air Purifier;19;394.27

@@ -1,0 +1,14 @@
+namespace "SourceData";
+
+entity SalesOrderHeader_Source {
+        RecordMode    : String(1);
+    key SalesOrderID  : Integer not null;
+        OrderDate     : UTCDateTime;
+        CalYear       : String(4);
+        CustomerNo    : String(4);
+        CustomerName  : String(100);
+        ProductID     : String(6);
+        ProductName   : String(100);
+        OrderQuantity : Integer;
+        Sales         : Decimal(15, 2);
+};

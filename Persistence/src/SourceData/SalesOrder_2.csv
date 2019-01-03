@@ -1,0 +1,7 @@
+RecordMode;SalesOrderID;OrderDate;CalYear;CustomerNo;CustomerName;ProductID;ProductName;OrderQuantity;Sales
+A;1;13.10.2010;2010;1000;Muhammed MacIntyre;100000;Eldon Base for stackable storage shelf, platinum;4;174.46
+A;2;01.10.2012;2012;2000;Barry French;200000;Cardinal Slant-D® Ring Binder, Heavy Gauge Vinyl;13;362.43
+N;5;17.06.2011;2011;5000;Carl Jackson;500000;SAFCO Mobile Desk Side File, Wire Frame;22;905.08
+N;6;24.03.2011;2011;5000;Carl Jackson;500000;SAFCO Mobile Desk Side File, Wire Frame;21;2781.82
+N;7;26.02.2010;2010;3000;Clay Rozendal;300000;R380;44;228.41
+N;8;23.11.2010;2010;4000;Carlos Soltero;400000;Holmes HEPA Air Purifier;45;196.85
